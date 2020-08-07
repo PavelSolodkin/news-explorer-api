@@ -8,7 +8,7 @@
 
 Публичный IP: 84.201.132.28
 
-Адрес: http://api.mestopsolodkin.tk http://www.api.mestopsolodkin.tk
+Адрес:  http://api.psolodkindiplom.tk http://www.api.psolodkindiplom.tk https://api.psolodkindiplom.tk https://www.api.psolodkindiplom.tk 
 
 ## Технологии:
 API.REST, express.js, MongoDB, Postman, Git, Node.js;
@@ -24,9 +24,9 @@ npm run start # режим без отслеживания изменения ф
 
 ### Запросы с сервера:
 
-POST localhost:3000/signup создаст пользователя по введённым данным name, email, password. В поле email должен быть корректный адрес, а пароль содержать необходимые символы, иначе сервер вернёт ошибку.
+POST /signup создаст пользователя по введённым данным name, email, password. В поле email должен быть корректный адрес, а пароль содержать необходимые символы, иначе сервер вернёт ошибку.
 
-POST localhost:3000/signin выполняет авторизацию пользователя, выдаёт токен на 7 дней.
+POST /signin выполняет авторизацию пользователя, выдаёт токен на 7 дней.
 
 GET /users/me возвращает информацию о пользователе (email и имя)
 

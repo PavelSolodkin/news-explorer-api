@@ -36,7 +36,7 @@ module.exports.deleteArticle = (req, res, next) => {
       } else if (JSON.stringify(article.owner) !== JSON.stringify(req.user._id)) {
         throw new ForbiddenError('Невозможно удалить чужую статью');
       } else {
-        Article.findByIdAndDelete(article._id)
+        Article.deleteOne(article)
           .then((deleteArticle) => res.send({ deleteArticle, message: 'Выбранная статья удалена' }))
           .catch(next);
       }

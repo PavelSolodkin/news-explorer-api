@@ -8,11 +8,11 @@ articlesRouter.get('/', getArticles);
 
 articlesRouter.post('/', celebrate({
   body: Joi.object().keys({
-    keyword: Joi.string().required(),
-    title: Joi.string().required(),
-    text: Joi.string().required(),
-    date: Joi.string().required(),
-    source: Joi.string().required(),
+    keyword: Joi.string().required().error(() => new BadRequestError('Значение в каждом из полей должно быть не менее 2 символов')),
+    title: Joi.string().required().error(() => new BadRequestError('Значение в каждом из полей должно быть не менее 2 символов')),
+    text: Joi.string().required().error(() => new BadRequestError('Значение в каждом из полей должно быть не менее 2 символов')),
+    date: Joi.string().required().error(() => new BadRequestError('Значение в каждом из полей должно быть не менее 2 символов')),
+    source: Joi.string().required().error(() => new BadRequestError('Значение в каждом из полей должно быть не менее 2 символов')),
     link: Joi.string()
       .required()
       .pattern(validateUrl)

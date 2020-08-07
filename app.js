@@ -66,7 +66,11 @@ app.post(
         .required()
         .pattern(validatePass)
         .error(() => new BadRequestError('Необходимо задать пароль, содержащий строчные латинские буквы и цифры длинной не менее 8 символов')),
-      name: Joi.string().required().min(2).max(30),
+      name: Joi.string()
+        .required()
+        .min(2)
+        .max(30)
+        .error(() => new BadRequestError('Имя обязательно')),
     }),
   }),
   createUser,
@@ -88,8 +92,7 @@ app.use((err, req, res, next) => {
   res.status(statusCode).send({
     message: statusCode === 500 ? 'На сервере произошла ошибка' : message,
   });
+  next();
 });
 
-app.listen(PORT, () => {
-  console.log(`Приложение запущено на localhost:${PORT}`);
-});
+app.listen(PORT);

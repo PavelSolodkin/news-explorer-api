@@ -21,9 +21,9 @@ const NotFoundError = require('./errors/NotFoundError');
 const validatePass = require('./regex/PasReg');
 
 const app = express();
-const { PORT = 3000 } = process.env;
+const { PORT, SERVER_CONNECT } = require('./config');
 
-mongoose.connect('mongodb://localhost:27017/diplom', {
+mongoose.connect(SERVER_CONNECT, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,

@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const {
   NODE_ENV, JWT_SECRET_KEY, SERVER_CONNECT, PORT,
 } = process.env;

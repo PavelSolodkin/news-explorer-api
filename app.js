@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
+const cors = require('cors');
 
 const { celebrate, Joi, errors } = require('celebrate');
 
@@ -27,6 +28,12 @@ mongoose.connect(SERVER_CONNECT, {
   useFindAndModify: false,
   useUnifiedTopology: true,
 });
+
+const corsOptions = {
+  origin: ['https://api.psolodkindiplom.tk', 'http://localhost:8080'],
+  credentials: true,
+  methods: 'GET, POST, DELETE',
+};
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -80,6 +87,8 @@ app.use('/users', auth, usersRoute);
 app.use('*', (req, res, next) => {
   next(new NotFoundError('Запрашиваемый ресурс не найден'));
 });
+
+app.use(cors(corsOptions));
 
 app.use(errorLogger);
 

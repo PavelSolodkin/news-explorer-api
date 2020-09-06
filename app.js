@@ -17,8 +17,6 @@ const limiter = require('./middlewares/limiter');
 const BadRequestError = require('./errors/BadRequestError');
 const NotFoundError = require('./errors/NotFoundError');
 
-const validatePass = require('./regex/PasReg');
-
 const app = express();
 const { PORT, SERVER_CONNECT } = require('./config');
 
@@ -48,7 +46,6 @@ app.post(
         .error(() => new BadRequestError('Введите почту в верном формате')),
       password: Joi.string()
         .required()
-        .pattern(validatePass)
         .error(() => new BadRequestError('Введите верный пароль, без этого никак')),
     }),
   }),
@@ -65,8 +62,8 @@ app.post(
         .error(() => new BadRequestError('Введите почту в верном формате')),
       password: Joi.string()
         .required()
-        .pattern(validatePass)
-        .error(() => new BadRequestError('Необходимо задать пароль, содержащий строчные латинские буквы и цифры длинной не менее 8 символов')),
+        .min(2)
+        .error(() => new BadRequestError('Необходимо задать пароль, содержащий не менее 2 символов')),
       name: Joi.string()
         .required()
         .min(2)
